@@ -28,7 +28,8 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->colors([
-                'primary' => Color::Amber,
+                // 'primary' => '#674CC4', // Styling color use #a0a0a0
+                'primary' => 'rgb(103, 76, 196)', //Use rgb
             ])
             ->font(family:'poppins')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
