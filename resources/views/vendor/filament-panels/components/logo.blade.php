@@ -2,3 +2,9 @@
     AlepHoster
 </h1>
 
+{{-- <img
+    src="{{ asset('iamges/alephoster-logo.png') }}"
+    alt="logo"
+
+> --}}
+
