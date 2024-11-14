@@ -26,6 +26,8 @@ class ProductResource extends Resource
 
     protected static ?string $navigationGroup = 'Shop'; //Navbar Group Name
 
+    protected static ?int $navigationSort = 0; //Sorting in navbar
+
     public static function form(Form $form): Form
     {
         return $form

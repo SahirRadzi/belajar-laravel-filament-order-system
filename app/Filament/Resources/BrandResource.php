@@ -25,11 +25,16 @@ class BrandResource extends Resource
 
     protected static ?string $navigationGroup = 'Shop'; //Navbar Group Name
 
+    protected static ?int $navigationSort = 1; // Sorting in Navbar
+
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+               Forms\Components\Group::make()
+                ->schema([
+                    Forms\Components\Section::make([
+                        Forms\Components\TextInput::make('name')
                     ->afterStateUpdated(function (string $operation, string $state, Forms\Set $set) {
                     $set('slug', Str::slug($state));
                     })
@@ -44,12 +49,36 @@ class BrandResource extends Resource
                     ->maxLength(255)
                     ->helperText('Auto-generate.'),
                 Forms\Components\TextInput::make('url')
-                    ->maxLength(255),
-                Forms\Components\Colorpicker::make('primary_hex'),
-                Forms\Components\Toggle::make('is_visible')
-                    ->required(),
-                Forms\Components\Textarea::make('description')
-                    ->columnSpanFull(),
+                    ->label('Website Url')
+                    ->required()
+                    ->unique()
+                    ->columnSpan('full'),
+                Forms\Components\Markdowneditor::make('description')
+                    ->columnSpan('full'),
+
+                    ])->columns(2),
+                ]),
+
+               Forms\Components\Group::make()
+                ->schema([
+                    Forms\Components\Section::make('Status')
+                        ->schema([
+                            Forms\Components\Toggle::make('is_visible')
+                                ->label('Visibility')
+                                ->helperText('Enable or disable brand visibility.')
+                                ->default(true),
+                        ]),
+               Forms\Components\Group::make()
+                ->schema([
+                    Forms\Components\Section::make('Color')
+                        ->schema([
+                            Forms\Components\ColorPicker::make('primary_hex')
+                                ->label('Primary Color'),
+                        ])
+                    ])
+
+                ])
+
             ]);
     }
 
@@ -63,10 +92,11 @@ class BrandResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('url')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('primary_hex')
-                    ->searchable(),
+                Tables\Columns\ColorColumn::make('primary_hex')
+                    ->label('Primary Color'),
                 Tables\Columns\IconColumn::make('is_visible')
-                    ->boolean(),
+                    ->boolean()
+                    ->label('Visibility'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -80,8 +110,12 @@ class BrandResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make(),
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make(),
+                    Tables\Actions\EditAction::make()
+                        ->color('success'),
+                    Tables\Actions\DeleteAction::make(),
+                ])
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
