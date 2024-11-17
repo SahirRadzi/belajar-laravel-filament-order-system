@@ -167,7 +167,7 @@ return [
         'exceptions'      => true,  // Exception displayer
         'log'             => false,  // Logs from Monolog (merged in messages if enabled)
         'db'              => true,  // Show database (PDO) queries and bindings
-        'views'           => false,  // Views with their data
+        'views'           => true,  // Views with their data
         'route'           => true,  // Current route information
         'auth'            => false, // Display Laravel authentication status
         'gate'            => false,  // Display Laravel Gate checks
