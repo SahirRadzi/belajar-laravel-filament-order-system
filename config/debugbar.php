@@ -62,7 +62,7 @@ return [
     |
     */
 
-    'editor' => env('DEBUGBAR_EDITOR') ?: env('IGNITION_EDITOR', 'phpstorm'),
+    'editor' => env('DEBUGBAR_EDITOR') ?: env('IGNITION_EDITOR', 'vscode'),
 
     /*
     |--------------------------------------------------------------------------
@@ -164,7 +164,7 @@ return [
         'messages'        => true,  // Messages
         'time'            => false,  // Time Datalogger
         'memory'          => false,  // Memory usage
-        'exceptions'      => false,  // Exception displayer
+        'exceptions'      => true,  // Exception displayer
         'log'             => false,  // Logs from Monolog (merged in messages if enabled)
         'db'              => true,  // Show database (PDO) queries and bindings
         'views'           => false,  // Views with their data
