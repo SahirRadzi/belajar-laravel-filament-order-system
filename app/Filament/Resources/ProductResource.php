@@ -11,6 +11,7 @@ use Filament\Tables\Table;
 use Illuminate\Support\Str;
 use App\Enums\ProductTypeEnum;
 use Filament\Resources\Resource;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\ProductResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
@@ -27,6 +28,20 @@ class ProductResource extends Resource
     protected static ?string $navigationGroup = 'Shop'; //Navbar Group Name
 
     protected static ?int $navigationSort = 0; //Sorting in navbar
+
+    protected static ?string $recordTitleAttribute = 'name';
+
+    public static function getGloballySearchableAttributes(): array
+    {
+        return ['name', 'slug', 'description'];
+    }
+
+    public static function getGlobalSearchResultDetails(Model $record): array
+    {
+        return [
+            'Brand' => $record->brand->name,
+        ];
+    }
 
     public static function form(Form $form): Form
     {
