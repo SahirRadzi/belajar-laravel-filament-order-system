@@ -50,8 +50,22 @@ class CategoryResource extends Resource
                         ->helperText('Auto-generate.'),
                     Forms\Components\Markdowneditor::make('description')
                         ->columnSpanFull(),
-                    ])
+                    ])->columns(2)
+                ]),
+
+               Forms\Components\Group::make()
+                ->schema([
+                    Forms\Components\Section::make('Status')
+                        ->schema([
+                            Forms\Components\Toggle::make('is_visible')
+                                ->label('Visibility')
+                                ->helperText('Enable or disable category visibility')
+                                ->default(true),
+                            Forms\Components\Select::make('parent_id')
+                                ->relationship('parent','name'),
+                        ])
                 ])
+
             ]);
     }
 
