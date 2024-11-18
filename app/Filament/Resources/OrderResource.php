@@ -40,18 +40,19 @@ class OrderResource extends Resource
                             Forms\Components\Select::make('customer_id')
                                 ->relationship('customer', 'name')
                                 ->searchable()
-                                ->preload()
-                                ->required(),
+                                ->preload(),
+                                // ->required(),
                             Forms\Components\Select::make('status')
                                 ->options([
                                     'pending' => OrderStatusEnum::PENDING->value,
                                     'processing' => OrderStatusEnum::PROCESSING->value,
                                     'completed' => OrderStatusEnum::COMPLETED->value,
                                     'declined' => OrderStatusEnum::DECLINED->value,
-                                ])->columnSpanFull()->required(),
+                                ])->columnSpanFull(),
+                                // ->required(),
 
                             Forms\Components\Markdowneditor::make('notes')
-                                ->required()
+                                // ->required()
                                 ->columnSpanFull(),
                         ])->columns(2),
                     Forms\Components\Wizard\Step::make('Order Items')
