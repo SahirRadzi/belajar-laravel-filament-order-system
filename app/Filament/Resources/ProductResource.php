@@ -40,6 +40,7 @@ class ProductResource extends Resource
     {
         return [
             'Brand' => $record->brand->name,
+            'Description' => $record->description,
         ];
     }
 
