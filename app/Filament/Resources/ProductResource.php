@@ -41,6 +41,7 @@ class ProductResource extends Resource
         return [
             'Brand' => $record->brand->name,
             'Description' => $record->description,
+            'Published' => $record->published_at,
         ];
     }
 
