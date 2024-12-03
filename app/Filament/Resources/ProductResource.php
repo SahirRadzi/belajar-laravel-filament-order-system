@@ -35,6 +35,11 @@ class ProductResource extends Resource
 
     // protected static ?string $activeNavigationIcon = 'heroicon-o-check-badge';
 
+    // public static function getNavigationBadge(): ?string
+    // {
+    //     return 'NEW';
+    // }
+
     public static function getGloballySearchableAttributes(): array
     {
         return ['name', 'slug', 'description'];
