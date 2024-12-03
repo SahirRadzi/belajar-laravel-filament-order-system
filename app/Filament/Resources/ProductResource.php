@@ -31,6 +31,8 @@ class ProductResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
+    protected static int $globalSearchResultLimit = 20;
+
     public static function getGloballySearchableAttributes(): array
     {
         return ['name', 'slug', 'description'];
@@ -43,6 +45,11 @@ class ProductResource extends Resource
             'Description' => $record->description,
             'Published' => $record->published_at,
         ];
+    }
+
+    public static function getGlobalSearchEloquentQuery(): Builder
+    {
+        return parent::getGlobalSearchEloquentQuery()->with(['Brand']);
     }
 
     public static function form(Form $form): Form

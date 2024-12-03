@@ -32,6 +32,7 @@ class AdminPanelProvider extends PanelProvider
                 // 'primary' => 'rgb(103, 76, 196)', //Use rgb
                 'primary' => Color::Orange, //Use rgb
             ])
+            ->globalSearchKeyBindings(['command+k', 'ctrl+k'])
             ->font(family:'poppins')
             ->favicon(url:'images/favicon/aliffhoster-favicon.png')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
