@@ -9,7 +9,8 @@
         "filament/filament": "^3.0-stable",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
-        "livewire/livewire": "^3.0@beta"
+        "livewire/livewire": "^3.0@beta",
+        "rmsramos/system-info": "*"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.14",
