@@ -6,6 +6,7 @@ use Filament\Pages;
 use Filament\Panel;
 use Filament\Widgets;
 use Filament\PanelProvider;
+use App\Filament\Pages\Auth\Login;
 use Filament\Support\Colors\Color;
 use Rmsramos\SystemInfo\SystemInfoPlugin;
 use Filament\Http\Middleware\Authenticate;
@@ -27,7 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->default()
             ->id('admin')
             ->path('admin')
-            ->login()
+            ->login(Login::class)
             ->colors([
                 // 'primary' => '#674CC4', // Styling color use #a0a0a0
                 // 'primary' => 'rgb(103, 76, 196)', //Use rgb
